@@ -2,6 +2,7 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 const inbox = document.querySelector('.inbox')
 
 fetch(endpoint).then(data => data.json()).then(data => {
+  inbox.innerHTML = ''
   for (let i = 10; i >= 1; i--) {
     const randomNumber = Math.floor(Math.random() * data.length)
     const inboxMsg = `

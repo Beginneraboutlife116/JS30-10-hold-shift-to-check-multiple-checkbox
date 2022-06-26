@@ -1,42 +1,99 @@
  html {
-      font-family: sans-serif;
-      background: #ffc600;
-    }
+  font-family: sans-serif;
+  background: #ffc600;
+}
 
-    .inbox {
-      max-width: 400px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
-    }
+.inbox {
+  max-width: 400px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+}
 
-    .item {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #F1F1F1;
-    }
+.item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F1F1F1;
+}
 
-    .item:last-child {
-      border-bottom: 0;
-    }
+.item:last-child {
+  border-bottom: 0;
+}
 
-    input:checked + p {
-      background: #F9F9F9;
-      text-decoration: line-through;
-    }
+input:checked + p {
+  background: #F9F9F9;
+  text-decoration: line-through;
+}
 
-    input[type="checkbox"] {
-      margin: 20px;
-    }
+input[type="checkbox"] {
+  margin: 20px;
+}
 
-    p {
-      margin: 0;
-      padding: 20px;
-      transition: background 0.2s;
-      flex: 1;
-      font-family:'helvetica neue';
-      font-size: 20px;
-      font-weight: 200;
-      border-left: 1px solid #D1E2FF;
-    }
+p {
+  margin: 0;
+  padding: 20px;
+  transition: background 0.2s;
+  flex: 1;
+  font-family:'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+  border-left: 1px solid #D1E2FF;
+}
+
+.loading {
+  box-sizing: border-box;
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+}
+
+.loading-icon {
+  box-sizing: border-box;
+  width: 30%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #ffc600;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-icon::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  width: 50%;
+  aspect-ratio: 1;
+  background-color: #fff;
+  inset: 50%;
+}
+
+.loading-icon::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  background-color: #fff;
+  border-radius: 50%;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+}
