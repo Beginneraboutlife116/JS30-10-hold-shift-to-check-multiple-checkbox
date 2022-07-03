@@ -1,8 +1,16 @@
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const inbox = document.querySelector('.inbox')
+const loading = document.querySelector('.loading')
 
-fetch(endpoint).then(data => data.json()).then(data => {
-  inbox.innerHTML = ''
+fetch(endpoint).then(response => {
+  if (!response.ok) {
+    return Promise.reject({
+      status: response.status,
+      message: "API issues."
+    })
+  }
+  return response.json()
+}).then(data => {
   for (let i = 10; i >= 1; i--) {
     const randomNumber = Math.floor(Math.random() * data.length)
     const inboxMsg = `
@@ -129,4 +137,17 @@ fetch(endpoint).then(data => data.json()).then(data => {
   //     lastChecked = event.target
   //   })
   // })
-}).catch(error => console.error(error))
+}).catch(error => {
+  console.error(error)
+  const errorMsg = `
+    <section>
+      <h1>${error.status}</h1>
+      <h2>${error.message}</h2>
+      <p>We suggest that you should check the message and adjust your connection!</p>
+    </section>
+  `
+  inbox.insertAdjacentHTML('beforeend', errorMsg)
+}).finally(() => {
+  loading.firstElementChild.style.setProperty('--animation-ps', 'paused')
+  loading.style.display = 'none'
+})

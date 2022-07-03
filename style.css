@@ -3,6 +3,11 @@
   background: #ffc600;
 }
 
+h1, h2 {
+  text-align: center;
+  padding: 1rem 0;
+}
+
 .inbox {
   max-width: 400px;
   margin: 50px auto;
@@ -55,7 +60,28 @@ p {
   border-radius: 50%;
   background-color: #ffc600;
   position: relative;
-  animation: rotate 1s linear infinite;
+  -webkit-animation: rotate 1s linear infinite;
+          animation: rotate 1s linear infinite;
+  -webkit-animation-play-state: var(--animation-ps, 'running');
+          animation-play-state: var(--animation-ps, 'running');
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotate {
